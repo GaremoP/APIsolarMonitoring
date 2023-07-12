@@ -17,7 +17,7 @@ namespace APIsolarMonitoring.Controllers
         private const string CsvFilePath = FilesPaths.InverterString1;
 
         [HttpGet]
-        public ActionResult<IEnumerable<dynamic>> Get([FromQuery] InverterFilter filters)
+        public ActionResult<IEnumerable<dynamic>> Get([FromQuery] InverterFilterT1 filters)
         {
             var data = ReadCsvFile(filters);
             var jsonData = JsonConvert.SerializeObject(data);
@@ -25,7 +25,7 @@ namespace APIsolarMonitoring.Controllers
             return Ok(filteredJson);
         }
         [HttpGet("Graph")]
-        public ActionResult<IEnumerable<dynamic>> Graph([FromQuery] InverterFilter filters)
+        public ActionResult<IEnumerable<dynamic>> Graph([FromQuery] InverterFilterT1 filters)
         {
             var data = ReadCsvFile(filters);
             var jsonData = JsonConvert.SerializeObject(data);
@@ -33,7 +33,7 @@ namespace APIsolarMonitoring.Controllers
         }
 
 
-        private List<dynamic> ReadCsvFile(InverterFilter filters)
+        private List<dynamic> ReadCsvFile(InverterFilterT1 filters)
         {
             using (var reader = new StreamReader(CsvFilePath))
             using (var csv = new CsvReader(reader, System.Globalization.CultureInfo.InvariantCulture))
@@ -68,7 +68,7 @@ namespace APIsolarMonitoring.Controllers
             return true;
         }
 
-        private static string FilterJsonData(string jsonData, InverterFilter filters)
+        private static string FilterJsonData(string jsonData, InverterFilterT1 filters)
         {
             JArray originalArray = JArray.Parse(jsonData);
             JArray filteredArray = new JArray();

@@ -1,6 +1,6 @@
 ﻿namespace APIsolarMonitoring.Models
 {
-    public class InverterFilter
+    public class InverterFilterT1
     {
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
